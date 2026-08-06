@@ -16,6 +16,10 @@ This project was created to explore desktop application development, UI design, 
 - Position size calculation (lot size)
 - Modern dark-themed user interface built with Avalonia UI
 
+
+
+  <img width="1673" height="961" alt="Screenshot 2026-08-06 at 20 47 50" src="https://github.com/user-attachments/assets/ab4d1f54-537f-4219-9ffb-eb3e9b8ac6ab" />
+
 # Prototype Status
 
 This is currently a basic prototype and is not intended to be used for live trading decisions.
