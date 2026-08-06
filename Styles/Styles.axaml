@@ -1,0 +1,61 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style Selector="TextBlock">
+        <Setter Property="FontFamily" Value="Arial"/>
+    </Style>
+    <Style Selector="Border.card">
+        <Setter Property="Background" Value="#15151D"/>
+        <Setter Property="BorderBrush" Value="#292938"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="22"/>
+    </Style>
+    <Style Selector="TextBox">
+        <Setter Property="Background" Value="#0E0E14"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="#303040"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="14"/>
+        <Setter Property="Padding" Value="14,10"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="MinHeight" Value="52"/>
+    </Style>
+    <Style Selector="TextBox:pointerover"><Setter Property="BorderBrush" Value="#7657FF"/></Style>
+    <Style Selector="TextBox:focus"><Setter Property="BorderBrush" Value="#A78BFA"/></Style>
+    <Style Selector="ComboBox">
+        <Setter Property="Background" Value="#0E0E14"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="#303040"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="14"/>
+        <Setter Property="MinHeight" Value="52"/>
+    </Style>
+    <Style Selector="Button">
+        <Setter Property="Background" Value="#181822"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="#303040"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="16"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="Button:pointerover">
+        <Setter Property="Background" Value="#8B73FF"/>
+        <Setter Property="BorderBrush" Value="#BCA8FF"/>
+    </Style>
+    <Style Selector="Button.primary">
+        <Setter Property="Background">
+            <Setter.Value><LinearGradientBrush StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#7657FF" Offset="0"/><GradientStop Color="#4F8CFF" Offset="1"/></LinearGradientBrush></Setter.Value>
+        </Setter>
+        <Setter Property="BorderBrush" Value="#A78BFA"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+    <Style Selector="Button.primary:pointerover">
+        <Setter Property="Background">
+            <Setter.Value><LinearGradientBrush StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#8B6CFF" Offset="0"/><GradientStop Color="#60A5FA" Offset="1"/></LinearGradientBrush></Setter.Value>
+        </Setter>
+    </Style>
+    <Style Selector="Slider"><Setter Property="Height" Value="42"/></Style>
+</Styles>
