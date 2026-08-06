@@ -1,0 +1,1207 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ForexCalculatorApp.MainWindow"
+        Width="1200"
+        Height="900"
+        Background="#08080D"
+        Title="Forex Position Calculator">
+
+
+    <Grid>
+
+
+        <!-- Background accents -->
+
+        <Ellipse
+            Width="800"
+            Height="800"
+            Fill="#7657FF"
+            Opacity="0.10"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Margin="-350,-350,0,0"/>
+
+
+        <Ellipse
+            Width="650"
+            Height="650"
+            Fill="#2563EB"
+            Opacity="0.08"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Margin="0,0,-250,-250"/>
+
+
+
+
+
+        <Border
+            Margin="55"
+            Classes="card"
+            Padding="38">
+
+
+            <ScrollViewer>
+
+
+                <StackPanel Spacing="28">
+
+
+                    <!-- Header -->
+
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        Spacing="10">
+
+
+                        <Border
+                            Background="#201A38"
+                            CornerRadius="20"
+                            Padding="18,8"
+                            HorizontalAlignment="Center">
+
+                            <TextBlock
+                                Text="FOREX TOOL"
+                                Foreground="#BCA8FF"
+                                FontSize="12"
+                                FontWeight="Bold"/>
+
+                        </Border>
+
+
+
+                        <TextBlock
+                            Text="Position Calculator"
+                            FontSize="34"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            HorizontalAlignment="Center"/>
+
+
+
+                        <TextBlock
+                            Text="Calculate risk, position size and trade levels"
+                            Foreground="#858594"
+                            FontSize="14"
+                            HorizontalAlignment="Center"/>
+
+
+                    </StackPanel>
+
+
+
+                    <!-- Balance -->
+
+                    <Border Classes="card"
+                            Padding="22">
+
+
+                        <StackPanel Spacing="15">
+
+
+                            <StackPanel Spacing="4">
+
+                                <TextBlock
+                                    Text="Account Balance"
+                                    Foreground="#FFFFFF"
+                                    FontSize="15"
+                                    FontWeight="SemiBold"/>
+
+
+                                <TextBlock
+                                    Text="Choose your account currency"
+                                    Foreground="#777785"
+                                    FontSize="12"/>
+
+                            </StackPanel>
+
+
+
+
+                            <Grid ColumnDefinitions="*,Auto"
+                                ColumnSpacing="15">
+
+
+                                <TextBox
+                                    x:Name="initalUserBalance"
+                                    Watermark="10,000"/>
+
+
+
+
+
+                                <Border Grid.Column="1"
+                                        Background="#0E0E14"
+                                        BorderBrush="#303040"
+                                        BorderThickness="1"
+                                        CornerRadius="16"
+                                        Padding="5">
+
+
+                                    <StackPanel
+                                        Orientation="Horizontal"
+                                        Spacing="4">
+
+
+
+                                        <Button
+                                            x:Name="USD_Select_Button"
+                                            Click="CurrentButton_Click"
+                                            Width="75"
+                                            Height="40"
+                                            Background="#7657FF"
+                                            BorderBrush="#A78BFA"
+                                            Content="USD"/>
+
+
+
+                                        <Button
+                                            x:Name="GBP_Select_Button"
+                                            Click="CurrentButton_Click"
+                                            Width="75"
+                                            Height="40"
+                                            Content="GBP"/>
+
+
+
+                                        <Button
+                                            x:Name="EUR_Select_Button"
+                                            Click="CurrentButton_Click"
+                                            Width="75"
+                                            Height="40"
+                                            Content="EUR"/>
+
+
+                                    </StackPanel>
+
+
+                                </Border>
+
+
+                            </Grid>
+
+
+                        </StackPanel>
+
+
+                    </Border>
+
+
+                    <!-- Risk -->
+
+                    <Border Classes="card"
+                            Padding="24">
+
+
+                        <StackPanel Spacing="18">
+
+
+                            <Grid>
+
+
+                                <StackPanel Spacing="4">
+
+
+                                    <TextBlock
+                                        Text="Risk Percentage"
+                                        Foreground="White"
+                                        FontSize="15"
+                                        FontWeight="SemiBold"/>
+
+
+                                    <TextBlock
+                                        Text="Amount of balance you are willing to risk"
+                                        Foreground="#777785"
+                                        FontSize="12"/>
+
+
+                                </StackPanel>
+
+
+
+
+                                <TextBlock
+                                    x:Name="Risk_Text"
+                                    Text="2.0%"
+                                    Foreground="#BCA8FF"
+                                    FontSize="28"
+                                    FontWeight="Bold"
+                                    HorizontalAlignment="Right"/>
+
+
+                            </Grid>
+
+
+                            <Border
+                                Background="#0E0E14"
+                                CornerRadius="16"
+                                Padding="12,8">
+
+
+                                <Slider
+                                    x:Name="Risk_Slider"
+                                    Minimum="0.1"
+                                    Maximum="10"
+                                    Value="2"
+                                    Height="35"
+                                    ValueChanged="Risk_Slider_ValueChanged"
+                                    />
+
+
+                            </Border>
+
+
+
+
+
+                            <Grid>
+
+                                <TextBlock
+                                    Text="0.1%"
+                                    Foreground="#777785"
+                                    FontSize="14"/>
+
+
+                                <TextBlock
+                                    Text="10%"
+                                    Foreground="#777785"
+                                    FontSize="14"
+                                    HorizontalAlignment="Right"/>
+
+
+                            </Grid>
+
+
+                        </StackPanel>
+
+
+                    </Border>
+
+
+
+
+
+
+
+
+
+                    <!-- Currency Pair Selector -->
+
+                    <Border Classes="card"
+                            Padding="22">
+
+                        <StackPanel Spacing="15">
+
+                            <TextBlock
+                                Text="📈  Currency Pair"
+                                Foreground="#B5B5C2"
+                                FontSize="14"/>
+
+
+                            <!-- Selector Button -->
+
+                            <Button
+                                x:Name="Visible_SelectorButton"
+                                Background="#111118"
+                                BorderBrush="#30303A"
+                                BorderThickness="1"
+                                CornerRadius="16"
+                                Height="65"
+                                Padding="16">
+
+
+                                <Button.Flyout>
+
+                                    <Flyout Placement="Bottom">
+
+                                        <Border
+                                            Background="#101015"
+                                            BorderBrush="#30303A"
+                                            BorderThickness="1"
+                                            CornerRadius="18"
+                                            Padding="18"
+                                            Width="330">
+
+
+                                            <StackPanel Spacing="14">
+
+
+
+                                                <!-- EUR/USD -->
+
+                                                <Button
+                                                    x:Name="EUR_USD_Select_Button"
+                                                    Click="PairButton_Click"
+                                                    Height="55"
+                                                    Background="#17171D"
+                                                    BorderThickness="0">
+
+
+                                                    <Grid ColumnDefinitions="Auto,*,Auto"
+                                                        ColumnSpacing="12">
+
+
+                                                        <TextBlock
+                                                            Text="🇪🇺"
+                                                            FontSize="22"/>
+
+
+                                                        <StackPanel Grid.Column="1">
+
+                                                            <TextBlock
+                                                                Text="EUR/USD"
+                                                                Foreground="White"
+                                                                FontWeight="SemiBold"/>
+
+
+                                                            <TextBlock
+                                                                Text="Euro / US Dollar"
+                                                                Foreground="#777785"
+                                                                FontSize="11"/>
+
+                                                        </StackPanel>
+
+
+
+                                                    </Grid>
+
+
+                                                </Button>
+
+
+
+
+
+
+                                                <!-- GBP/USD -->
+
+                                                <Button
+                                                    x:Name="GBP_USD_Select_Button"
+                                                    Click="PairButton_Click"
+                                                    Height="55"
+                                                    Background="#17171D"
+                                                    BorderThickness="0">
+
+
+                                                    <Grid ColumnDefinitions="Auto,*,Auto"
+                                                        ColumnSpacing="12">
+
+
+                                                        <TextBlock
+                                                            Text="🇬🇧"
+                                                            FontSize="22"/>
+
+
+                                                        <StackPanel Grid.Column="1">
+
+                                                            <TextBlock
+                                                                Text="GBP/USD"
+                                                                Foreground="White"
+                                                                FontWeight="SemiBold"/>
+
+
+                                                            <TextBlock
+                                                                Text="British Pound"
+                                                                Foreground="#777785"
+                                                                FontSize="11"/>
+
+                                                        </StackPanel>
+                
+
+
+                                                    </Grid>
+
+
+                                                </Button>
+
+
+
+
+
+                                                <!-- EUR/GBP -->
+
+                                                <Button
+                                                    x:Name="EUR_GBP_Select_Button"
+                                                    Click="PairButton_Click"
+                                                    Height="55"
+                                                    Background="#17171D"
+                                                    BorderThickness="0">
+
+
+                                                    <Grid ColumnDefinitions="Auto,*,Auto"
+                                                        ColumnSpacing="12">
+
+
+                                                        <TextBlock
+                                                            Text="🇬🇧🇪🇺"
+                                                            FontSize="22"/>
+
+
+                                                        <StackPanel Grid.Column="1">
+
+                                                            <TextBlock
+                                                                Text="EUR/GBP"
+                                                                Foreground="White"
+                                                                FontWeight="SemiBold"/>
+
+
+                                                            <TextBlock
+                                                                Text="EURO / POUND"
+                                                                Foreground="#777785"
+                                                                FontSize="11"/>
+
+                                                        </StackPanel>
+
+
+
+                                                    </Grid>
+
+
+                                                </Button>
+
+
+
+
+                                                <!-- AUD/USD -->
+
+                                                <Button
+                                                    x:Name="AUD_USD_Select_Button"
+                                                    Click="PairButton_Click"
+                                                    Height="55"
+                                                    Background="#17171D"
+                                                    BorderThickness="0">
+
+
+                                                    <Grid ColumnDefinitions="Auto,*,Auto"
+                                                        ColumnSpacing="12">
+
+
+                                                        <TextBlock
+                                                            Text="🇦🇺"
+                                                            FontSize="22"/>
+
+
+                                                        <StackPanel Grid.Column="1">
+
+                                                            <TextBlock
+                                                                Text="AUD/USD"
+                                                                Foreground="White"
+                                                                FontWeight="SemiBold"/>
+
+
+                                                            <TextBlock
+                                                                Text="Australian / US Dollar"
+                                                                Foreground="#777785"
+                                                                FontSize="11"/>
+
+                                                        </StackPanel>
+
+
+                                                    </Grid>
+
+
+                                                </Button>
+
+
+
+                                            </StackPanel>
+
+
+                                        </Border>
+
+
+                                    </Flyout>
+
+
+                                </Button.Flyout>
+
+
+
+
+                                <!-- Closed selector appearance -->
+
+                                <Grid ColumnDefinitions="Auto,*,Auto"
+                                    ColumnSpacing="14">
+
+
+                                    <TextBlock
+                                        x:Name="Closed_Selector_Symbol"
+                                        Text="🇪🇺"
+                                        FontSize="24"/>
+
+
+                                    <StackPanel Grid.Column="1">
+
+                                        <TextBlock
+                                            x:Name="Closed_Selector_Text"
+                                            Text="EUR/USD"
+                                            Foreground="White"
+                                            FontSize="16"
+                                            FontWeight="SemiBold"/>
+
+
+                                        <TextBlock
+                                            Text="London Session • Open"
+                                            Foreground="#6EE7B7"
+                                            FontSize="11"/>
+
+                                    </StackPanel>
+
+
+                                    <TextBlock
+                                        Grid.Column="2"
+                                        Text="▼"
+                                        Foreground="#BCA8FF"
+                                        FontSize="16"/>
+
+
+                                </Grid>
+
+
+                            </Button>
+
+
+                        </StackPanel>
+
+                    </Border>
+
+
+
+                    <!-- Trade Levels -->
+
+                <Border Classes="card"
+                        Padding="22">
+
+
+                    <StackPanel Spacing="18">
+
+
+                        <StackPanel Spacing="4">
+
+                            <TextBlock
+                                Text="🎯  Trade Levels"
+                                Foreground="White"
+                                FontSize="15"
+                                FontWeight="SemiBold"/>
+
+
+                            <TextBlock
+                                Text="Set your entry, stop loss and target prices"
+                                Foreground="#777785"
+                                FontSize="12"/>
+
+                        </StackPanel>
+
+
+
+
+
+                        <!-- Direction Selector -->
+
+                        <Grid ColumnDefinitions="*,*"
+                            ColumnSpacing="12">
+
+
+                            <Button
+                                x:Name="Buy_Button"
+                                Click="SellBuy_Button_Click"
+                                Height="45"
+                                Background="#163A2B"
+                                BorderBrush="#34D399"
+                                BorderThickness="1">
+
+
+                                <TextBlock
+                                    Text="▲  BUY"
+                                    Foreground="#6EE7B7"
+                                    FontWeight="SemiBold"
+                                    HorizontalAlignment="Center"/>
+
+
+                            </Button>
+
+
+                            <Button
+                                x:Name="Sell_Button"
+                                Click="SellBuy_Button_Click"
+                                Grid.Column="1"
+                                Height="45">
+
+
+                                <TextBlock
+                                    Text="▼  SELL"
+                                    Foreground="#FF8A9A"
+                                    FontWeight="SemiBold"
+                                    HorizontalAlignment="Center"/>
+
+
+                            </Button>
+
+
+                        </Grid>
+
+
+
+
+
+
+
+                        <!-- Price Inputs -->
+
+                        <Grid ColumnDefinitions="*,*,*"
+                            ColumnSpacing="12">
+
+
+
+                            <!-- Entry -->
+
+                            <Border
+                                Background="#111118"
+                                BorderBrush="#30303A"
+                                BorderThickness="1"
+                                CornerRadius="14"
+                                Padding="12">
+
+
+                                <StackPanel Spacing="6">
+
+
+                                    <TextBlock
+                                        Text="Entry"
+                                        Foreground="#777785"
+                                        FontSize="11"/>
+
+
+                                    <TextBox
+                                        x:Name="Entry_Input"
+                                        TextChanged="Calculate_PIPS"
+                                        Watermark="1.08500"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        FontSize="16"/>
+
+
+                                </StackPanel>
+
+
+                            </Border>
+
+
+
+
+
+
+                            <!-- Stop Loss -->
+
+                            <Border Grid.Column="1"
+                                    Background="#171118"
+                                    BorderBrush="#4A2830"
+                                    BorderThickness="1"
+                                    CornerRadius="14"
+                                    Padding="12">
+
+
+                                <StackPanel Spacing="6">
+
+
+                                    <TextBlock
+                                        Text="Stop Loss"
+                                        Foreground="#FF8A9A"
+                                        FontSize="11"/>
+
+
+                                    <TextBox
+                                        x:Name="SL_Input"
+                                        TextChanged="Calculate_PIPS"
+                                        Watermark="1.08250"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        FontSize="16"/>
+
+
+                                </StackPanel>
+
+
+                            </Border>
+
+
+
+
+
+
+                            <!-- Take Profit -->
+
+                            <Border Grid.Column="2"
+                                    Background="#101A18"
+                                    BorderBrush="#24483D"
+                                    BorderThickness="1"
+                                    CornerRadius="14"
+                                    Padding="12">
+
+
+                                <StackPanel Spacing="6">
+
+
+                                    <TextBlock
+                                        Text="Take Profit"
+                                        Foreground="#6EE7B7"
+                                        FontSize="11"/>
+
+
+                                    <TextBox
+                                        x:Name="TP_Input"
+                                        TextChanged="Calculate_PIPS"
+                                        Watermark="1.09000"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        FontSize="16"/>
+
+
+                                </StackPanel>
+
+
+                            </Border>
+
+
+
+                        </Grid>
+
+
+
+
+
+
+
+                        <!-- Pip Preview -->
+
+                        <Border
+                            Background="#111118"
+                            CornerRadius="14"
+                            Padding="15">
+
+
+                            <Grid ColumnDefinitions="*,*,*">
+
+
+                                <StackPanel>
+
+                                    <TextBlock
+                                        Text="Distance"
+                                        Foreground="#777785"
+                                        FontSize="11"/>
+
+
+                                    <TextBlock
+                                        x:Name="PIP_Risk"
+                                        Text="25 pips"
+                                        Foreground="#FF8A9A"
+                                        FontSize="15"
+                                        FontWeight="Bold"/>
+
+                                </StackPanel>
+
+
+
+
+
+                                <StackPanel Grid.Column="1">
+
+                                    <TextBlock
+                                        Text="Target"
+                                        Foreground="#777785"
+                                        FontSize="11"/>
+
+
+                                    <TextBlock
+                                        x:Name="PIP_Reward"
+                                        Text="50 pips"
+                                        Foreground="#6EE7B7"
+                                        FontSize="15"
+                                        FontWeight="Bold"/>
+
+                                </StackPanel>
+
+
+
+
+
+                                <StackPanel Grid.Column="2">
+
+                                    <TextBlock
+                                        Text="Ratio"
+                                        Foreground="#777785"
+                                        FontSize="11"/>
+
+
+                                    <TextBlock
+                                        x:Name="riskTOreward"
+                                        Text="1 : 2"
+                                        Foreground="#BCA8FF"
+                                        FontSize="15"
+                                        FontWeight="Bold"/>
+
+                                </StackPanel>
+
+
+                            </Grid>
+
+
+                        </Border>
+
+
+
+                    </StackPanel>
+
+
+                </Border>
+
+
+
+
+                    
+
+<!-- Calculate Button -->
+
+<Border
+    Background="#463A79"
+    CornerRadius="18"
+    Width="800"
+    Padding="0">
+
+
+    <Button
+        x:Name="CalculateButton"
+        Click="CalculateButtonClicked"
+        Height="70"
+        Width="800"
+        HorizontalAlignment="Stretch"
+        Background="#463A79"
+        Foreground="White"
+        BorderBrush="#9B85FF"
+        BorderThickness="1"
+        CornerRadius="20"
+        FontSize="17"
+        FontWeight="Bold"
+        Padding="20">
+
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Center"
+            Spacing="10">
+
+            <TextBlock
+                Text="✦"
+                FontSize="20"
+                VerticalAlignment="Center"/>
+
+
+            <TextBlock
+                Text="Calculate Position Size"
+                VerticalAlignment="Center"/>
+
+        </StackPanel>
+
+    </Button>
+
+
+</Border>
+
+
+
+
+
+
+<!-- Results Panel -->
+
+<Border Classes="card"
+        Padding="26">
+
+
+    <StackPanel Spacing="20">
+
+
+
+        <!-- Header -->
+
+        <StackPanel Spacing="5">
+
+
+            <TextBlock
+                Text="📊  Position Summary"
+                Foreground="White"
+                FontSize="18"
+                FontWeight="Bold"/>
+
+
+            <TextBlock
+                Text="Your calculated trade information"
+                Foreground="#777785"
+                FontSize="12"/>
+
+
+        </StackPanel>
+
+
+
+
+
+
+        <!-- Main Stats -->
+
+        <Grid
+            ColumnDefinitions="*,*"
+            RowDefinitions="*,*"
+            ColumnSpacing="14"
+            RowSpacing="14">
+
+
+
+
+
+            <!-- Risk -->
+
+            <Border Classes="card"
+                    Padding="18">
+
+
+                <StackPanel Spacing="8">
+
+
+                    <TextBlock
+                        Text="Risk Amount"
+                        Foreground="#777785"
+                        FontSize="12"/>
+
+
+                    <TextBlock
+                        x:Name="FinalRiskAmount"
+                        Text="$200.00"
+                        Foreground="White"
+                        FontSize="26"
+                        FontWeight="Bold"/>
+
+
+                </StackPanel>
+
+
+            </Border>
+
+
+
+
+
+
+
+
+            <!-- Position -->
+
+            <Border Grid.Column="1"
+                    Classes="card"
+                    Padding="18">
+
+
+                <StackPanel Spacing="8">
+
+
+                    <TextBlock
+                        Text="Position Size"
+                        Foreground="#777785"
+                        FontSize="12"/>
+
+
+                    <TextBlock
+                        x:Name="FinalLotSize"
+                        Text="0.20 Lots"
+                        Foreground="#BCA8FF"
+                        FontSize="26"
+                        FontWeight="Bold"/>
+
+
+                </StackPanel>
+
+
+            </Border>
+
+
+
+
+
+
+
+
+            <!-- Stop -->
+
+            <Border Grid.Row="1"
+                    Classes="card"
+                    Padding="18">
+
+
+                <StackPanel Spacing="8">
+
+
+                    <TextBlock
+                        Text="Stop Distance"
+                        Foreground="#777785"
+                        FontSize="12"/>
+
+
+                    <TextBlock
+                        x:Name="StopDistanceText"
+                        Text="25 Pips"
+                        Foreground="#FF8A9A"
+                        FontSize="26"
+                        FontWeight="Bold"/>
+
+
+                </StackPanel>
+
+
+            </Border>
+
+
+
+
+
+
+
+
+            <!-- Reward -->
+
+            <Border Grid.Row="1"
+                    Grid.Column="1"
+                    Classes="card"
+                    Padding="18">
+
+
+                <StackPanel Spacing="8">
+
+
+                    <TextBlock
+                        Text="Risk / Reward"
+                        Foreground="#777785"
+                        FontSize="12"/>
+
+
+                    <TextBlock
+                        x:Name="Risk_TO_Reward_Text"
+                        Text="1 : 2.5"
+                        Foreground="#6EE7B7"
+                        FontSize="26"
+                        FontWeight="Bold"/>
+
+
+                </StackPanel>
+
+
+            </Border>
+
+
+
+        </Grid>
+
+
+
+
+
+
+
+        <!-- Extra Information -->
+
+        <Border
+            Background="#111118"
+            CornerRadius="16"
+            Padding="18">
+
+
+            <Grid ColumnDefinitions="*,*,*">
+
+
+
+                <StackPanel>
+
+                    <TextBlock
+                        Text="Entry"
+                        Foreground="#777785"
+                        FontSize="11"/>
+
+
+                    <TextBlock
+                        x:Name="ENTRY_Text"
+                        Text="1.08500"
+                        Foreground="White"
+                        FontWeight="SemiBold"/>
+
+
+                </StackPanel>
+
+
+
+
+
+                <StackPanel Grid.Column="1">
+
+                    <TextBlock
+                        Text="Stop Loss"
+                        Foreground="#777785"
+                        FontSize="11"/>
+
+
+                    <TextBlock
+                        x:Name="STOPLOSS_Text"
+                        Text="1.08250"
+                        Foreground="#FF8A9A"
+                        FontWeight="SemiBold"/>
+
+
+                </StackPanel>
+
+
+
+
+
+                <StackPanel Grid.Column="2">
+
+                    <TextBlock
+                        Text="Target"
+                        Foreground="#777785"
+                        FontSize="11"/>
+
+
+                    <TextBlock
+                        x:Name="TARGET_Text"
+                        Text="1.09000"
+                        Foreground="#6EE7B7"
+                        FontWeight="SemiBold"/>
+
+
+                </StackPanel>
+
+
+
+            </Grid>
+
+
+        </Border>
+
+
+
+    </StackPanel>
+
+
+</Border>
+
+
+
+                </StackPanel>
+
+
+            </ScrollViewer>
+
+
+        </Border>
+
+
+    </Grid>
+
+
+</Window>
